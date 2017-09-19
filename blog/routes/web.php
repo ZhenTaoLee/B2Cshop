@@ -17,3 +17,10 @@ Route::get('/', function () {
 Route::get('/12', function () {
     echo 'hello';
 });
+
+//===========================================
+//Admin
+//get
+Route::get('/admin/login', 'Admin\IndexController@login');
+Route::get('/admin/', 'Admin\IndexController@index');
+
