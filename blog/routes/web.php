@@ -12,10 +12,10 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('Home/Index');
 });
-Route::get('/12', function () {
-    echo 'hello';
+Route::get('/shoplist', function () {
+     return view('Home/List');
 });
 
 //===========================================
