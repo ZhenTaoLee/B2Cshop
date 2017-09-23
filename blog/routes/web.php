@@ -10,13 +10,26 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+//首页
+Route::get('/', 'Home\IndexController@Index');
+//商品列表
+Route::get('/shoplist', 'Home\IndexController@List');
+//详情页
+Route::get('/detail', 'Home\IndexController@Detail');
+//登录页
+Route::get('/login', 'Home\IndexController@Login');
+//注册页
+Route::get('/register', 'Home\IndexController@Register');
 
-Route::get('/', function () {
-    return view('Home/Index');
-});
-Route::get('/shoplist', function () {
-     return view('Home/List');
-});
+
+//注销登录并返回首页
+Route::get('/logout', 'Home\IndexController@Logout');
+
+
+
+//备用格式
+//Route::get('/', '命名空间\类名@方法名');
+//Route::post('/', '命名空间\类名@方法名');
 
 //===========================================
 //Admin
