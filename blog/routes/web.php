@@ -20,6 +20,7 @@ Route::get('/detail', 'Home\IndexController@Detail');
 Route::get('/login', 'Home\IndexController@Login');
 //注册页
 Route::get('/register', 'Home\IndexController@Register');
+
 //注销登录并返回首页
 Route::get('/logout', 'Home\IndexController@Logout');
 
@@ -29,15 +30,6 @@ Route::get('/logout', 'Home\IndexController@Logout');
 //Route::get('/', '命名空间\类名@方法名');
 //Route::post('/', '命名空间\类名@方法名');
 
-//===========================================
-
-//Home
-
-
-
-
-
-//===============================================
 
 //Admin
 
