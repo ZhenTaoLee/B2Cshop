@@ -36,8 +36,9 @@ class IndexController extends Controller
      */
     public function nav()
     {
+        // dd(base_path());
         $inc = new IncController;
-        foreach ($inc->navList() as $k => $v) {
+        foreach ($inc->adminAllPower as $k => $v) {
                foreach ($v as $key => $val) {             
                     if ($val['show'] == 1) {
                         $this->admin_show[$k][$key]= $val['url'];

@@ -12,6 +12,15 @@
 	<script src="{{asset('Home/js/jquery.min.js')}}"></script>
 	<script src="{{asset('Home/js/jquery-1.7.min.js')}}"></script>
 	<script src="{{asset('Home/js/amazeui.min.js')}}"></script>
+	<style type="text/css">
+		#zuzhang{
+			width: 50px;
+			position: fixed;
+			right: 0px;
+			bottom: 50px;
+			z-index: 100;
+		}
+	</style>
 	@section('css')
    	   {{-- 子模板css --}}
 		
@@ -124,5 +133,18 @@
 	@section('bottom-js')
 			{{-- 页脚js代码 --}}
 	@show
+
+
+	<img src="{{asset('Home\images/shabi.png')}}" title="点击可放大!" alt="点击可放大!" id="zuzhang">
+	<script>
+		$('#zuzhang') .on( 'click' , function () {
+			var that = $(this);
+			if (that.css('width') == '50px') {
+				that.css('width','200px');
+			} else {
+				that.css('width','50px');
+			}
+		})
+	</script>
 </body>
 </html>

@@ -20,9 +20,6 @@ Route::get('/detail', 'Home\IndexController@Detail');
 Route::get('/login', 'Home\IndexController@Login');
 //注册页
 Route::get('/register', 'Home\IndexController@Register');
-
-
-
 //注销登录并返回首页
 Route::get('/logout', 'Home\IndexController@Logout');
 
@@ -34,9 +31,6 @@ Route::get('/logout', 'Home\IndexController@Logout');
 
 //===========================================
 
-Route::get('/', function() {
-		return view('welcome');
-});
 //Home
 
 
