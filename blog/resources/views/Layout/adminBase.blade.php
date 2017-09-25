@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js">
+<html >
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,15 +14,17 @@
 <meta name="apple-mobile-web-app-title" content="Amaze UI" />
 <link rel="stylesheet" href="{{asset('/assets/css/amazeui.min.css')}}"/>
 <link rel="stylesheet" href="{{asset('/assets/css/admin.css')}}">
+<!-- <link rel="stylesheet" href="{{asset('/bootstrap-3.3.7/css/bootstrap.min.css')}}"> -->
 <script src="{{asset('/assets/js/jquery.min.js')}}"></script>
 <script src="{{asset('/assets/js/app.js')}}"></script>
+<script src="{{asset('/bootstrap-3.3.7/js/bootstrap.min.js')}}"></script>
 @section('css')
       <!--  写子模板的样式 -->
 @show
 </head>
-
 <body>
-<header class="am-topbar admin-header">
+@section('body')
+<!-- <header class="am-topbar admin-header">
   <div class="am-topbar-brand"><img src="{{asset('/assets/i/logo.png')}}"></div>
 
   <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
@@ -84,16 +86,25 @@
       <li class="am-hide-sm-only" style="float: right;"><a href="javascript:;" id="admin-fullscreen"><span class="am-icon-arrows-alt"></span> <span class="admin-fullText">开启全屏</span></a></li>
     </ul>
   </div>
-</header>
-
+</header> -->
+<!-- 
 <div class="am-cf admin-main"> 
 
 <div class="nav-navicon admin-main admin-sidebar">
     
     
     <div class="sideMenu am-icon-dashboard" style="color:#aeb2b7; margin: 10px 0 0 0;"> 欢迎系统管理员：清风抚雪</div>
-    <div class="sideMenu">
-      <h3 class="am-icon-flag"><em></em> <a href="#">商品管理</a></h3>
+    <div class="sideMenu"> -->
+
+   <!--        <ul>
+        <li><a href="">商品列表</a></li>
+        <li class="func" dataType='html' dataLink='msn.htm' iconImg='images/msn.gif'>添加新商品</li>
+        <li>商品分类</li>
+        <li>用户评论</li>
+        <li>商品回收站</li>
+        <li>库存管理 </li>
+      </ul> -->
+      <!-- <h3 class="am-icon-flag"><em></em> <a href="#">商品管理</a></h3>
       <ul>
         <li><a href="">商品列表</a></li>
         <li class="func" dataType='html' dataLink='msn.htm' iconImg='images/msn.gif'>添加新商品</li>
@@ -138,11 +149,11 @@
         <li>提现 /转账 出入账汇率</li>
         <li>平台设置</li>
         <li>声音文件</li>
-      </ul>
-    </div>
+      </ul> -->
+    <!-- </div> -->
     <!-- sideMenu End --> 
     
-    <script type="text/javascript">
+ <!--    <script type="text/javascript">
       jQuery(".sideMenu").slide({
         titCell:"h3", //鼠标触发对象
         targetCell:"ul", //与titCell一一对应，第n个titCell控制第n个targetCell的显示隐藏
@@ -152,7 +163,7 @@
         defaultPlay:true,//默认是否执行效果（默认true）
         returnDefault:true //鼠标从.sideMen移走后返回默认状态（默认false）
         });
-    </script> 
+    </script>  -->
 
     
     
@@ -161,9 +172,9 @@
     
     
     
-</div>
+<!-- </div> -->
 
-<div class=" admin-content">
+<!-- <div class=" admin-content">
   
     <div class="daohang">
       <ul>
@@ -178,18 +189,18 @@
        
 
   
-</div>
+</div> -->
   
   
 
 
-<div class="admin">
+<!-- <div class="admin">
   
-     @section('main')
+
   
   
    
-<!--    <div class="admin-index">
+   <div class="admin-index">
       <dl data-am-scrollspy="{animation: 'slide-right', delay: 100}">
         <dt class="qs"><i class="am-icon-users"></i></dt>
         <dd>455</dd>
@@ -494,28 +505,26 @@
    
    
    
+<!-- </div> -->
 @show
-</div>
-    <div class="foods">
+
+
+
+  <!--   <div class="foods">
       <ul>版权所有@2015 .模板收集自 <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> -  More Templates<a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></ul>
       <dl><a href="" title="返回头部" class="am-icon-btn am-icon-arrow-up"></a></dl>
  
-    </div>
+    </div> -->
 
 
-
-
-
-
-
-</div>
+<!-- </div>
 
 </div>
 
 
 
 
-</div>
+</div> -->
 
 <!--[if lt IE 9]>
 <script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
@@ -526,10 +535,10 @@
 <![endif]--> 
 
 <!--[if (gte IE 9)|!(IE)]><!--> 
-<script src="{{asset('/assets/js/amazeui.min.js')}}"></script>
+<!-- <script src="{{asset('/assets/js/amazeui.min.js')}}"></script> -->
 <!--<![endif]-->
 
-
-
 </body>
+@section('footer-js')
+@show
 </html>
