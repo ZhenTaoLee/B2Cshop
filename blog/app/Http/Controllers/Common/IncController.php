@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 class IncController extends Controller
 {
     public $adminAllPower = [];             //存储所有URL
-    public function navList()
+    public function __construct()
     {
         return $this->adminAllPower = array(
                 '商品管理'=>array(
@@ -41,11 +41,11 @@ class IncController extends Controller
 
             '管理员管理' => array(
                 '权限管理' => array(
-                    'url' => 'admin/Administrator/power',
+                    'url' =>"admin/Administrator/power",
                     'show' => '1',
                 ),
                 '修改权限' => array(
-                    'url' => 'admin/Administrator/editPower',
+                    'url' => "admin/Administrator/editPower",
                     'show' => '0'
                     ),
                 ),

@@ -41,16 +41,16 @@ Route::get('/admin/Index/nav', 'Admin\IndexController@nav')->middleware('adminSe
 //底部
 Route::get('/admin/Index/footer', 'Admin\IndexController@footer')->middleware('adminSession');
 //注销
-Route::get('/admin/logout', 'Api\Admin\LoginApi@logout')->middleware('adminSession');
+Route::get('/admin/logout', 'Admin\LoginController@logout')->middleware('adminSession');
 
 
 /***********管理员管理模块***********/
 //加载管理权限页面
 Route::get('/admin/Administrator/power', 'Admin\AdministratorController@power');
 //修改权限页面
-Route::get('/admin/Administrator/editPower', 'Admin\AdministratorController@editPower')->middleware('adminPower');
+Route::get('/admin/Administrator/editPower', 'Admin\AdministratorController@editPower');
 //执行修改权限
-Route::post('/admin/Administrator/updatePower', 'Api\Admin\AdministratorApi@updatePower');
+Route::post('/admin/Administrator/updatePower', 'Admin\AdministratorController@updatePower');
 
 
 

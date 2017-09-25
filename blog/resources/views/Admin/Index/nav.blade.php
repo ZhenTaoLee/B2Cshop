@@ -17,10 +17,10 @@
     </div>
     <div class="sideMenu"> 
     @foreach ($admin_Power as $key => $val)
-      <h3><em></em> <a href="#">{{$key}}</a></h3>
+      <h3><em></em> <a>{{$key}}</a></h3>
       <ul>
         @foreach ($val as $k => $v) 
-        <li><a href="{{$v}}" target="main">{{$k}}</a></li>
+        <li><a href="{{url($v)}}" target="main">{{$k}}</a></li>
         @endforeach
       </ul>
       @endforeach
