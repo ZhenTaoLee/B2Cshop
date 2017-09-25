@@ -21,7 +21,12 @@ Route::get('/login', 'Home\IndexController@Login');
 //注册页
 Route::get('/register', 'Home\IndexController@Register');
 
-//Admin
+
+
+//注销登录并返回首页
+Route::get('/logout', 'Home\IndexController@Logout');
+
+
 
 
 /***********后台登录模块***********/
@@ -40,7 +45,7 @@ Route::get('/admin/Index/nav', 'Admin\IndexController@nav')->middleware('adminSe
 //底部
 Route::get('/admin/Index/footer', 'Admin\IndexController@footer')->middleware('adminSession');
 //注销
-Route::get('/admin/logout', 'Admin\LoginController@logout')->middleware('adminSession');
+Route::get('/admin/logout', 'Api\Admin\LoginApi@logout')->middleware('adminSession');
 
 
 /***********管理员管理模块***********/
@@ -52,9 +57,13 @@ Route::post('/admin/Administrator/add', 'Admin\AdministratorController@add');
 //加载管理列表页面
 Route::get('/admin/Administrator/power', 'Admin\AdministratorController@power');
 //修改权限页面
+
 Route::get('/admin/Administrator/editPower/{id}', 'Admin\AdministratorController@editPower')->where('id', '[0-9]+');
+
+Route::get('/admin/Administrator/editPower', 'Admin\AdministratorController@editPower')->middleware('adminPower');
+
 //执行修改权限
-Route::post('/admin/Administrator/updatePower', 'Admin\AdministratorController@updatePower');
+Route::post('/admin/Administrator/updatePower', 'Api\Admin\AdministratorApi@updatePower');
 
 
 

@@ -1,0 +1,9 @@
+diff a/blog/routes/web.php b/blog/routes/web.php	(rejected hunks)
+@@ -21,7 +21,6 @@
+ //注册页
+ Route::get('/register', 'Home\IndexController@Register');
+ 
+-	}
+ //Admin
+ 
+ 
