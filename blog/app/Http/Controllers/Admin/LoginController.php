@@ -44,7 +44,7 @@ class LoginController extends Controller
                 'msg' => '用户名不存在或密码错误',
                 ]);
         }
-        session(['adminUser' => ["username"=>$mod->username,'power'=>$mod->power]]);
+        session(['adminUser' => ["username"=>$mod->username,'power'=>$mod->power,'id'=>$mod->id]]);
 
     
         return response()->json([

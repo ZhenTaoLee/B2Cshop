@@ -36,7 +36,6 @@ class IndexController extends Controller
      */
     public function nav()
     {
-        // dd(base_path());
         $inc = new IncController;
         foreach ($inc->adminAllPower as $k => $v) {
                foreach ($v as $key => $val) {             
@@ -45,17 +44,19 @@ class IndexController extends Controller
                     }
                }
         }
+        if (session('adminUser')['id'] == 1 || session('adminUser')['power'] == 'all') {
+            $this->admin_Power = $this->admin_show;
+        }  else {
+             $list = unserialize(session('adminUser')['power']);
 
-        $list = unserialize(session('adminUser')['power']);
-
-        foreach ($this->admin_show as $k=>$v) {
-            foreach ($list as $key => $val) {       
-                if (array_key_exists($key, $v) ) {
-                    $this->admin_Power[$k][$key] = $val;
-                } 
+            foreach ($this->admin_show as $k=>$v) {
+                foreach ($list as $key => $val) {       
+                    if (array_key_exists($key, $v) ) {
+                        $this->admin_Power[$k][$key] = $val;
+                    } 
+                }
             }
         }
-
         return view('Admin/Index/nav', ['admin_Power' =>$this->admin_Power]);
     }
 

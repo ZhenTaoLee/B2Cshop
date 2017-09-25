@@ -21,31 +21,6 @@ Route::get('/login', 'Home\IndexController@Login');
 //注册页
 Route::get('/register', 'Home\IndexController@Register');
 
-<<<<<<< HEAD
-
-//注销登录并返回首页
-Route::get('/logout', 'Home\IndexController@Logout');
-
-
-
-//备用格式
-//Route::get('/', '命名空间\类名@方法名');
-//Route::post('/', '命名空间\类名@方法名');
-
-//===========================================
-=======
-Route::get('/', function() {
-		return view('welcome');
-	}
-);
-//Home
-
-
-
-
-
-//===============================================
->>>>>>> 1cd4ac51026b4a219b3ca0370f4722c2c6637bb7
 //Admin
 
 
@@ -69,10 +44,15 @@ Route::get('/admin/logout', 'Admin\LoginController@logout')->middleware('adminSe
 
 
 /***********管理员管理模块***********/
-//加载管理权限页面
+//加载添加管理员页面
+Route::get('/admin/Administrator/create', 'Admin\AdministratorController@create');
+//执行添加管理员
+Route::post('/admin/Administrator/add', 'Admin\AdministratorController@add');
+
+//加载管理列表页面
 Route::get('/admin/Administrator/power', 'Admin\AdministratorController@power');
 //修改权限页面
-Route::get('/admin/Administrator/editPower', 'Admin\AdministratorController@editPower');
+Route::get('/admin/Administrator/editPower/{id}', 'Admin\AdministratorController@editPower')->where('id', '[0-9]+');
 //执行修改权限
 Route::post('/admin/Administrator/updatePower', 'Admin\AdministratorController@updatePower');
 
