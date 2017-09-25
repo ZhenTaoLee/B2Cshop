@@ -21,7 +21,7 @@ Route::get('/login', 'Home\IndexController@Login');
 //注册页
 Route::get('/register', 'Home\IndexController@Register');
 
-<<<<<<< HEAD
+//<<<<<<< HEAD
 
 //注销登录并返回首页
 Route::get('/logout', 'Home\IndexController@Logout');
@@ -32,8 +32,8 @@ Route::get('/logout', 'Home\IndexController@Logout');
 //Route::get('/', '命名空间\类名@方法名');
 //Route::post('/', '命名空间\类名@方法名');
 
-//===========================================
-=======
+//==================================================
+
 Route::get('/', function() {
 		return view('welcome');
 	}
@@ -45,7 +45,7 @@ Route::get('/', function() {
 
 
 //===============================================
->>>>>>> 1cd4ac51026b4a219b3ca0370f4722c2c6637bb7
+//>>>>>>> 1cd4ac51026b4a219b3ca0370f4722c2c6637bb7
 //Admin
 
 
