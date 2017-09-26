@@ -21,10 +21,50 @@ Route::get('/login', 'Home\IndexController@Login');
 //注册页
 Route::get('/register', 'Home\IndexController@Register');
 
-
-
 //注销登录并返回首页
 Route::get('/logout', 'Home\IndexController@Logout');
+
+
+/***********个人中心***********/
+//个人中心首页
+Route::get('/Home/personal', 'Home\PersonalController@personal');
+
+//个人信息
+Route::get('/Home/information', 'Home\PersonalController@information');
+
+//电话修改
+Route::get('/Home/phoneRevise', 'Home\PersonalController@phoneRevise');
+
+//邮箱修改
+Route::get('/Home/emailRevise', 'Home\PersonalController@emailRevise');
+
+//地址管理
+Route::get('/Home/address', 'Home\PersonalController@address');
+
+//修改密码
+Route::get('/Home/passChange', 'Home\PersonalController@passChange');
+
+//订单管理
+Route::get('/Home/order', 'Home\PersonalController@order');
+
+//退款售后
+Route::get('/Home/refund', 'Home\PersonalController@refund');
+
+//商品评价
+Route::get('/Home/refund', 'Home\PersonalController@refund');
+
+//我的积分
+Route::get('/Home/intergral', 'Home\PersonalController@intergral');
+
+//积分详情
+Route::get('/Home/intergralList', 'Home\PersonalController@intergralList');
+
+//收藏
+Route::get('/Home/collection', 'Home\PersonalController@collection');
+
+//足迹
+Route::get('/Home/footprint', 'Home\PersonalController@footprint');
+
 
 
 
