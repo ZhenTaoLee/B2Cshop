@@ -48,9 +48,18 @@ class IncController extends Controller
                         'show' => '0'
                         ),
                 '编辑' => array(
-                        'url' => "admin/Administrator/editPower",
+                        'url' => "admin/Administrator/edit,admin/Administrator/doEdit",
                         'show' => '0'
                         ),
+                '角色管理' => array(
+                    'url' => 'admin/Administrator/role',
+                    'show' => '1',
+                    ),
+                '添加角色' => array(
+                    'url' => 'admin/Administrator/roleCreate',
+                    'show' => '0',
+                    ),
+
             ),
 
 

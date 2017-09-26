@@ -18,11 +18,17 @@ class CheckAdminPower
         $inc = new IncController;
         if (session('adminUser')['id'] != 1) {
             if (session('adminUser')['power'] == 'all') {
-                continue;
-            }
-            $list = unserialize(session('adminUser')['power']);
-            if (!in_array($request->path(), $list)) {
-               return redirect("/admin/login");
+                $list = $inc->adminAllPower;
+            } else {
+                $list = unserialize(session('adminUser')['power']);
+                // $url = [];
+                // foreach ($list as $key => $val) {
+                //     $url[] = explode(',', $val);
+                // }
+        
+                if (!in_array($request->path(), $list)) {
+                   return redirect("/admin/login");
+                }
             }
         }
         return $next($request);

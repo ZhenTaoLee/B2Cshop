@@ -48,14 +48,15 @@ class IndexController extends Controller
             $this->admin_Power = $this->admin_show;
         }  else {
              $list = unserialize(session('adminUser')['power']);
-
+            
             foreach ($this->admin_show as $k=>$v) {
-                foreach ($list as $key => $val) {       
-                    if (array_key_exists($key, $v) ) {
-                        $this->admin_Power[$k][$key] = $val;
-                    } 
+                foreach ($v as $k1=> $v1) {
+                        if (in_array($v1, $list)) {
+                            $this->admin_Power[$k][$k1] = $v1;
+                       } 
                 }
             }
+
         }
         return view('Admin/Index/nav', ['admin_Power' =>$this->admin_Power]);
     }

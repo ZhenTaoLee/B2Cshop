@@ -25,7 +25,7 @@
 @section('body')
 <div class="head-div">
     <div class='head-left'>
-        <h4>添加管理员</h4>
+        <h4>编辑管理员</h4>
         <a href="{{url('/admin/Administrator/power')}}" class='btn btn-primary btn-sm'>管理员列表</a>
     </div>
 </div>
@@ -34,33 +34,37 @@
 </div>
 <div class="main-div">
     <form class="form-horizontal main-form" role="form" action="javascript:;">
+        <input type="hidden" name='id' value="{{$admin_user->id}}" />
         <div class="form-group">
             <label for="firstname" class="col-sm-2 control-label">管理员名称</label>
             <div class="col-sm-5">
-                <input type="text" class="form-control" name="username" placeholder="请输入管理员名称">
+                <input type="text" class="form-control" name="username" value='{{$admin_user->username}}' placeholder="请输入管理员名称">
             </div>
         </div>
         <div class="form-group">
-            <label for="firstname" class="col-sm-2 control-label">邮箱</label>
+            <label for="lastname" class="col-sm-2 control-label">邮箱</label>
             <div class="col-sm-5">
-                <input type="text" class="form-control" name="email" placeholder="请输入邮箱">
+                <input type="text" class="form-control"  name='email' placeholder="请输入邮箱" value="{{$admin_user->email}}">
             </div>
         </div>
         <div class="form-group">
-            <label for="lastname" class="col-sm-2 control-label">密码</label>
+            <label for="lastname" class="col-sm-2 control-label">状态</label>
             <div class="col-sm-5">
-                <input type="password" class="form-control"  name='pwd' placeholder="请输入密码">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="lastname" class="col-sm-2 control-label">确认密码</label>
-            <div class="col-sm-5">
-                <input type="password" class="form-control"  name='pwd2' placeholder="请输入确认密码">
+                <input type="radio" class="form"  name='state' value="1" 
+                @php if ($admin_user->state == 1)
+                   echo "checked";
+                @endphp
+                >启用
+                <input type="radio" class="form"  name='state' value="2"
+                @php if ($admin_user->state == 2)
+                   echo "checked";
+                @endphp
+                >禁用
             </div>
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-5">
-                <a  class="btn btn-success btn-add" >添加</a>
+                <a  class="btn btn-success btn-add" >编辑</a>
                 <button type="reset" class="btn btn-default">重置</button>
             </div>
         </div>
@@ -71,14 +75,14 @@
 <script type="text/javascript">
     $('.btn-add').on('click', function () {
         var username = $('input[name="username"]').val();
-        var pwd = $('input[name="pwd"]').val();
-        var pwd2 = $('input[name="pwd2"]').val();
+        var id = $('input[name="id"]').val();
         var email = $('input[name="email"]').val();
+        var state = $('input[name="state"]:checked').val();
         var token  = "{{csrf_token()}}";
         $.ajax({
-            url: "{{url('/admin/Administrator/add')}}",
+            url: "{{url('/admin/Administrator/doEdit')}}",
             type:'post',
-            data:{"username":username,"pwd":pwd,"pwd2":pwd2,"_token":token,"email":email},
+            data:{"username":username,"id":id,"email":email,"state":state,"_token":token},
             dataType:'json',
             success:function (data) {
                 if (data.code == 2000) {
@@ -97,14 +101,18 @@
             error: function (errorText) {
                 var text = JSON.parse(errorText.responseText).errors;
                 var div = "<div class='alert alert-danger alert-mess'><ul>";
-                for (var key in text) {
-                    div += "<li>"+text[key][0]+"</li>";
+                if (text) {
+                    for (var key in text) {
+                        div += "<li>"+text[key][0]+"</li>";
+                    }
+                } else {
+                    iv += "<li>"+'未知错误'+"</li>";
                 }
                 div += '</ul></div>';
                 $('.alert-mess').remove();
                 $('.main-div').prepend(div);
             }
-        })
+       })
 
     })
 </script>
