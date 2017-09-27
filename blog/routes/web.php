@@ -20,6 +20,8 @@ Route::get('/detail/{gid}', 'Home\IndexController@Detail');
 Route::get('/login', 'Home\IndexController@Login');
 //注册页
 Route::get('/register', 'Home\IndexController@Register');
+//手机验证码
+Route::get('/send/{phone}/{code}','Api\Common@sendPhoneMsg');
 
 
 //注销登录并返回首页
@@ -48,8 +50,33 @@ Route::get('/Home/passChange', 'Home\PersonalController@passChange');
 //订单管理
 Route::get('/Home/order', 'Home\PersonalController@order');
 
+
+
+//Home(前台注册)有问题找区汉东
+//处理注册的路由
+//用户名验证
+Route::post('/user/name','Home\UserController@nameManage');
+
+// 密码验证
+Route::post('/user/pass','Home\UserController@passManage');
+
+// 手机验证
+Route::post('/user/phone','Home\UserController@phoneManage');
+
+// 邮箱验证
+Route::post('/user/email','Home\UserController@emailManage');
+
+// 验证码验证
+Route::post('/user/code','Api\Common@sendPhoneMsg');
+
+// 注册总验证
+Route::post('/doregister','Home\UserController@handerRegister');
+
+
+
 //退款售后
 Route::get('/Home/refund', 'Home\PersonalController@refund');
+
 
 //商品评价
 Route::get('/Home/refund', 'Home\PersonalController@refund');
@@ -68,6 +95,9 @@ Route::get('/Home/footprint', 'Home\PersonalController@footprint');
 
 
 
+
+
+//Admin
 
 
 /***********后台登录模块***********/
