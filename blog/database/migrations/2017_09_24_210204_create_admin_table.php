@@ -18,7 +18,9 @@ class CreateAdminTable extends Migration
             $table->string('username', 50)->comment('管理员账号');
             $table->string('pwd')->comment('密码');
             $table->text('power')->nullable()->comment('权限');
+            $table->string('email')->comment('邮箱');
             $table->tinyInteger('role_id')->nullable()->comment('(外键)角色id');
+            $table->integer('addtime')->comment('加入时间');
             $table->timestamps();
         });
     }

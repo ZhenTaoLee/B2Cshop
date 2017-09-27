@@ -4,27 +4,28 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAddressTable extends Migration
+class CreateIntegralRecordTable extends Migration
 {
     /**
-     * @张健领
+     * 积分记录表
      * Run the migrations.
-     * 商品分类shop_type
+     *
      * @return void
      */
     public function up()
     {
-        Schema::create('address', function (Blueprint $table) {
+        Schema::create('integral_record', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name',  32)->unique();
-            $table->integer('pid')->default(0);
-            $table->string('path',  255);
+            $table->integer('order_detail_id');
+            $table->integer('user_id');
+            $table->string('detail', 255);
+            $table->char('change', 11);
+            $table->tinyInteger('date');
 
-            //预留字段
             $table->string('field1', 50);
             $table->string('field2', 50);
             $table->string('field3', 50);
-
+            
             $table->timestamps();
         });
     }
@@ -36,6 +37,6 @@ class CreateAddressTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('address');
+        Schema::dropIfExists('integral_record');
     }
 }

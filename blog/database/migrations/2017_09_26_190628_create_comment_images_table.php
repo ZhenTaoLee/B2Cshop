@@ -4,23 +4,21 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAddressTable extends Migration
+class CreateCommentImagesTable extends Migration
 {
     /**
-     * @张健领
+     * 商品品论图片表
      * Run the migrations.
-     * 商品分类shop_type
+     *
      * @return void
      */
     public function up()
     {
-        Schema::create('address', function (Blueprint $table) {
+        Schema::create('comment_images', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name',  32)->unique();
-            $table->integer('pid')->default(0);
-            $table->string('path',  255);
+            $table->integer('comment_id');
+            $table->string('image', 255);
 
-            //预留字段
             $table->string('field1', 50);
             $table->string('field2', 50);
             $table->string('field3', 50);
@@ -36,6 +34,6 @@ class CreateAddressTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('address');
+        Schema::dropIfExists('comment_images');
     }
 }

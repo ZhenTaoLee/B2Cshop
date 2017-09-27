@@ -1159,6 +1159,8 @@
 	});
 </script>
 
+
+{{-- 张健领 --}}
 <script>
 	var box = $("#text_box");
 	var num = $('#max_num').text();
@@ -1166,6 +1168,7 @@
 	$("#add").click(function() {
 		if(box.val() >= max) {
 			box.val(max - 1);
+			$('#add').attr('disabled', true);
 		}
 	});
 	$("#min").click(function() {
@@ -1174,21 +1177,36 @@
 		}
 	});
 
-	$("#text_box").blur(function() {
+
+
+	$("#text_box").blur( function () {
 		var vas = parseInt(box.val());
 		if(box.val() > max) {
 			box.val(max);
-		} else if(box.val() < 0) {
+			$('#add').attr('disabled', true);
+			$('#min').attr('disabled', false);
+		} else if(box.val() <= 0) {
 			box.val(0);
+			$('#min').attr('disabled', true);
+			$('#add').attr('disabled', false);
 		} else {
 			if(isNaN(vas)) {
 				box.val(0);
+				$('#min').attr('disabled', true);
+				$('#add').attr('disabled', false);
 			} else {
-				box.val(vas);
+				if (vas >= max) {
+					box.val(max);
+					$('#add').attr('disabled', true);
+				} else {
+					box.val(vas);
+				}
+				
+				
 			}
 
 		}
-	});
+	} );
 </script>
 
 @endsection
