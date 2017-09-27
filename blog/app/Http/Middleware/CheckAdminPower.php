@@ -20,13 +20,19 @@ class CheckAdminPower
             if (session('adminUser')['power'] == 'all') {
                 $list = $inc->adminAllPower;
             } else {
+
                 $list = unserialize(session('adminUser')['power']);
-                // $url = [];
-                // foreach ($list as $key => $val) {
-                //     $url[] = explode(',', $val);
-                // }
-        
-                if (!in_array($request->path(), $list)) {
+                $url = [];
+                foreach ($list as $key => $val) {
+                    $url[] = explode(',', $val);
+                }
+                $name =[];
+                foreach($url as $k => $v) {
+                    foreach ($v as $key => $val) {
+                        $name[] =$val;
+                    }
+                }
+                if (!in_array($request->path(), $name)) {
                    return redirect("/admin/login");
                 }
             }

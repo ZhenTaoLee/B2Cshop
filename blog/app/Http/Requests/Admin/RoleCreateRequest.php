@@ -4,7 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AdministratorEditRequest extends FormRequest
+class RoleCreateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,18 +24,18 @@ class AdministratorEditRequest extends FormRequest
     public function rules()
     {
         return [
-            'username' => 'required|max:16',
-            'email' => 'required',
+            "role_name" => 'required',
+            'describe' => 'required',
+            'power' => 'required',
+
         ];
     }
     public function messages()
     {
         return [
-           'username.required' => '管理员名称不能为空',
-           'username.max' => '管理员名称过长',
-           'email.required' => '邮箱不能为空',
-           'email.email' => '邮箱格式不正确',
-
+           'role_name.required' => '请输入角色名称',
+           'describe.required' => '请填写描述',
+           'power.required' => '请选择权限',
         ];
     }
 }

@@ -107,9 +107,14 @@ Route::get('/admin/Administrator/edit/{id}', 'Admin\AdministratorController@edit
 Route::post('/admin/Administrator/doEdit', 'Admin\AdministratorController@doEdit');
 //加载角色管理页面
 Route::get('/admin/Administrator/role', 'Admin\AdministratorController@role');
-//添加角色页面
+//加载添加角色页面
 Route::get('/admin/Administrator/createRole', 'Admin\AdministratorController@createRole');
-
+//执行添加角色
+Route::post('/admin/Administrator/addRole', 'Admin\AdministratorController@addRole');
+//加载编辑角色页面
+Route::get('/admin/Administrator/editRole/{id}', 'Admin\AdministratorController@editRole')->where('id', '[0-9]+');
+//执行编辑角色
+Route::post('/admin/Administrator/updateRole', 'Admin\AdministratorController@updateRole');
 
 
 
