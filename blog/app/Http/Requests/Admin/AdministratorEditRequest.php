@@ -4,7 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AdministratorAddRequest extends FormRequest
+class AdministratorEditRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,12 +25,9 @@ class AdministratorAddRequest extends FormRequest
     {
         return [
             'username' => 'required|max:16',
-            'pwd' => 'required|min:6',
-            'pwd2' => 'required',
             'email' => 'required|email',
         ];
     }
-
     public function messages()
     {
         return [
@@ -38,10 +35,6 @@ class AdministratorAddRequest extends FormRequest
            'username.max' => '管理员名称过长',
            'email.required' => '邮箱不能为空',
            'email.email' => '邮箱格式不正确',
-           'pwd.required' => '密码不能为空',
-           'pwd.min' => '密码长度最少6位',
-           'pwd2.required' => '确认密码不能为空',
-
         ];
     }
 }

@@ -25,8 +25,8 @@
 @section('body')
 <div class="head-div">
     <div class='head-left'>
-        <h4>添加管理员</h4>
-        <a href="{{url('/admin/Administrator/power')}}" class='btn btn-primary btn-sm'>管理员列表</a>
+        <h4>添加角色</h4>
+        <a href="{{url('/admin/Administrator/role')}}" class='btn btn-primary btn-sm'>角色列表</a>
     </div>
 </div>
 <div class='middle'>
@@ -35,28 +35,23 @@
 <div class="main-div">
     <form class="form-horizontal main-form" role="form" action="javascript:;">
         <div class="form-group">
-            <label for="firstname" class="col-sm-2 control-label">管理员名称</label>
+            <label for="firstname" class="col-sm-2 control-label">角色名称</label>
             <div class="col-sm-5">
                 <input type="text" class="form-control" name="username" placeholder="请输入管理员名称">
             </div>
         </div>
         <div class="form-group">
-            <label for="firstname" class="col-sm-2 control-label">邮箱</label>
+            <label for="firstname" class="col-sm-2 control-label">角色描述</label>
             <div class="col-sm-5">
                 <input type="text" class="form-control" name="email" placeholder="请输入邮箱">
             </div>
         </div>
         <div class="form-group">
-            <label for="lastname" class="col-sm-2 control-label">密码</label>
-            <div class="col-sm-5">
-                <input type="password" class="form-control"  name='pwd' placeholder="请输入密码">
+            @foreach ($allPower as $k => $v) 
+            <div class="col-sm-2">
+                <input type="checkbox" class="form" name="" >
             </div>
-        </div>
-        <div class="form-group">
-            <label for="lastname" class="col-sm-2 control-label">确认密码</label>
-            <div class="col-sm-5">
-                <input type="password" class="form-control"  name='pwd2' placeholder="请输入确认密码">
-            </div>
+            @endforeach
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-5">

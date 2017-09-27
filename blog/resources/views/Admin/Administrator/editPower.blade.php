@@ -20,19 +20,8 @@
 @endsection
 @section('body')
 <div class="container">
-@if (session('status'))
-    <div class="alert alert-success">
-        {{ session('status') }}
-    </div>
-@elseif (session('error'))
-    <div class="alert alert-danger">
-        {{ session('error') }}
-    </div>
-@endif
-
     <div class='form-power'>
-        <form action='/admin/Administrator/updatePower' method="post" class=''>
-            {{csrf_field()}}
+        <form action='javascript:;' class=''>
             <input type="hidden" name='id' value="{{$admin_id}}" />
             @foreach ($allPower as $k => $v)
             <div class='form-group main-box'>
@@ -52,7 +41,7 @@
             <div class='form-group main-box'>
                 <input type="checkbox"   name="allSelect"  value="all"  />全选
             </div>
-            <button class="btn btn-success">提交</button>
+            <button class="btn btn-success btn-update">提交</button>
         </form>
     </div>
 </div>
@@ -73,8 +62,38 @@
                 $('input[type="checkbox"]').removeAttr('checked');
             }
         })
+
+    $('.btn-update').on('click', function () {
+        // var username = $('input[name="username"]').val();
+        var val = $('form').serializeArray();
+        console.log(val);
+        var token  = "{{csrf_token()}}";
+        $.ajax({
+            url: "{{url('/admin/Administrator/updatePower')}}",
+            type:'post',
+            data:{"val":val, "_token":token},
+            dataType:'json',
+            success:function (data) {
+                console.log(data);
+                if (data.code == 2000) {
+                    var div =  "<div class='alert alert-success alert-mess'>"+data.msg+"</div>";
+                    $('.alert-mess').remove();
+                    $('.container').prepend(div);
+                    setTimeout(function () {                 
+                        // $('.alert-mess').remove();
+                        location.href = "{{url('/admin/Administrator/power')}}";
+                    }, 3000)
+                } else {
+                    var div =  "<div class='alert alert-danger alert-mess'>"+data.msg+"</div>";
+                    $('.alert-mess').remove();
+                    $('.container').prepend(div);
+                }            
+            },
+        })
+
+    })
     </script>
-@if ($selectPower == 'all')
+@if (in_array('all', $selectPower))
     <script>
         $('input[type="checkbox"]').prop('checked', 'true');
     </script>

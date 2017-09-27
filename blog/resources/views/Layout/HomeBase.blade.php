@@ -8,6 +8,7 @@
 	<link href="{{asset('Home/css/amazeui.min.css')}}" rel="stylesheet" type="text/css" />
 	<link href="{{asset('Home/css/admin.css')}}" rel="stylesheet" type="text/css" />
 	<link href="{{asset('Home/css/demo.css')}}" rel="stylesheet" type="text/css" />
+	<link href="{{asset('Home/css/personal.css')}}" rel="stylesheet" type="text/css">
 
 	<script src="{{asset('Home/js/jquery.min.js')}}"></script>
 	<script src="{{asset('Home/js/jquery-1.7.min.js')}}"></script>
@@ -49,7 +50,7 @@
 					</div>
 					<div class="topMessage my-shangcheng">
 						<div class="menu-hd MyShangcheng">
-							<a href="javascript:;" target="_top">
+							<a href="{{url('/Home/personal')}}" target="_top">
 								<i class="am-icon-user am-icon-fw"></i>个人中心
 							</a>
 						</div>
