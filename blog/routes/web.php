@@ -20,8 +20,9 @@ Route::get('/detail', 'Home\IndexController@Detail');
 Route::get('/login', 'Home\IndexController@Login');
 //注册页
 Route::get('/register', 'Home\IndexController@Register');
+//手机验证码
+Route::get('/send/{phone}/{code}','Api\Common@sendPhoneMsg');
 
-<<<<<<< HEAD
 
 //注销登录并返回首页
 Route::get('/logout', 'Home\IndexController@Logout');
@@ -33,19 +34,24 @@ Route::get('/logout', 'Home\IndexController@Logout');
 //Route::post('/', '命名空间\类名@方法名');
 
 //===========================================
-=======
-Route::get('/', function() {
-		return view('welcome');
-	}
-);
+
 //Home
+//处理注册的路由
+Route::post('/user/name','Home\UserController@nameManage');
+Route::post('/user/pass','Home\UserController@passManage');
+Route::post('/user/phone','Home\UserController@phoneManage');
+Route::post('/user/email','Home\UserController@emailManage');
+// Route::post('/user/docode','Home\UserController@codeManage');
+Route::post('/doregister','Home\UserController@handerRegister');
+Route::post('/user/code','Api\Common@sendPhoneMsg');
+
 
 
 
 
 
 //===============================================
->>>>>>> 1cd4ac51026b4a219b3ca0370f4722c2c6637bb7
+
 //Admin
 
 
