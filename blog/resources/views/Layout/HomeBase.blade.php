@@ -8,10 +8,20 @@
 	<link href="{{asset('Home/css/amazeui.min.css')}}" rel="stylesheet" type="text/css" />
 	<link href="{{asset('Home/css/admin.css')}}" rel="stylesheet" type="text/css" />
 	<link href="{{asset('Home/css/demo.css')}}" rel="stylesheet" type="text/css" />
+	<link href="{{asset('Home/css/personal.css')}}" rel="stylesheet" type="text/css">
 
 	<script src="{{asset('Home/js/jquery.min.js')}}"></script>
 	<script src="{{asset('Home/js/jquery-1.7.min.js')}}"></script>
 	<script src="{{asset('Home/js/amazeui.min.js')}}"></script>
+	<style type="text/css">
+		#zuzhang{
+			width: 50px;
+			position: fixed;
+			right: 0px;
+			bottom: 50px;
+			z-index: 100;
+		}
+	</style>
 	@section('css')
    	   {{-- 子模板css --}}
 		
@@ -40,7 +50,7 @@
 					</div>
 					<div class="topMessage my-shangcheng">
 						<div class="menu-hd MyShangcheng">
-							<a href="javascript:;" target="_top">
+							<a href="{{url('/Home/personal')}}" target="_top">
 								<i class="am-icon-user am-icon-fw"></i>个人中心
 							</a>
 						</div>
@@ -124,5 +134,18 @@
 	@section('bottom-js')
 			{{-- 页脚js代码 --}}
 	@show
+
+
+	<img src="{{asset('Home\images/shabi.png')}}" title="点击可放大!" alt="点击可放大!" id="zuzhang">
+	<script>
+		$('#zuzhang') .on( 'click' , function () {
+			var that = $(this);
+			if (that.css('width') == '50px') {
+				that.css('width','200px');
+			} else {
+				that.css('width','50px');
+			}
+		})
+	</script>
 </body>
 </html>

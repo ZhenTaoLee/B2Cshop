@@ -4,21 +4,21 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAddressTable extends Migration
+class CreateErrorUserTable extends Migration
 {
     /**
-     * @张健领
+     *  @张健领
      * Run the migrations.
-     * 商品分类shop_type
+     * 登录错误信息表error_user
      * @return void
      */
     public function up()
     {
-        Schema::create('address', function (Blueprint $table) {
+        Schema::create('error_user', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name',  32)->unique();
-            $table->integer('pid')->default(0);
-            $table->string('path',  255);
+            $table->integer('uid');
+            $table->integer('error_number');
+            $table->integer('error_time');
 
             //预留字段
             $table->string('field1', 50);
@@ -36,6 +36,6 @@ class CreateAddressTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('address');
+        Schema::dropIfExists('error_user');
     }
 }

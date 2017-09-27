@@ -4,23 +4,23 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAddressTable extends Migration
+class CreateGoodCommentTable extends Migration
 {
     /**
-     * @张健领
+     * 商品评论表
      * Run the migrations.
-     * 商品分类shop_type
+     *
      * @return void
      */
     public function up()
     {
-        Schema::create('address', function (Blueprint $table) {
+        Schema::create('good_comment', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name',  32)->unique();
-            $table->integer('pid')->default(0);
-            $table->string('path',  255);
+            $table->integer('user_id');
+            $table->integer('order_detail_id');
+            $table->string('comment', 255);
+            $table->tinyInteger('date');
 
-            //预留字段
             $table->string('field1', 50);
             $table->string('field2', 50);
             $table->string('field3', 50);
@@ -36,6 +36,6 @@ class CreateAddressTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('address');
+        Schema::dropIfExists('good_comment');
     }
 }
