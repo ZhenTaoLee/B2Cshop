@@ -29,7 +29,7 @@ class UserController extends Controller
         $state=["1"=>"启用","2"=>"禁用"];
        //$user = $user->toArray(); 
        // dd($user);
-         return view('Admin/Administrator/user',['user'=>$user,"sex"=>$sex,"user_level"=>$user_level,"state"=>$state]);
+         return view('Admin/Admin/user',['user'=>$user,"sex"=>$sex,"user_level"=>$user_level,"state"=>$state]);
     }
 
     /**
@@ -42,7 +42,7 @@ class UserController extends Controller
     {
         //
         //dd('32121');
-         return view('Admin/Administrator/create');
+         return view('Admin/Admin/create');
     }
 
     /**
@@ -171,7 +171,7 @@ class UserController extends Controller
             //dd($user_level);
             // /dd($state);
             //dd($sex);
-        return view('Admin/Administrator/show',['user'=>$oneUser,'sex'=>$sex,'state'=>$state,'user_level'=>$user_level]);
+        return view('Admin/Admin/show',['user'=>$oneUser,'sex'=>$sex,'state'=>$state,'user_level'=>$user_level]);
     }
 
     /**
@@ -197,7 +197,7 @@ class UserController extends Controller
             //dd($user_level);
             // /dd($state);
             //dd($sex);
-        return view('Admin/Administrator/detail',['user'=>$user,"sex"=>$sex,"state"=>$state,"user_level"=>$user_level]);
+        return view('Admin/Admin/detail',['user'=>$user,"sex"=>$sex,"state"=>$state,"user_level"=>$user_level]);
     }
 
     /**
