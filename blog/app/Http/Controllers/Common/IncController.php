@@ -11,6 +11,21 @@ class IncController extends Controller
     public function __construct()
     {
         return $this->adminAllPower = array(
+             '用户管理'=>array(
+                '用户列表'=>array(
+                    'url'=>'admin/User/index',
+                    'show'=>'1',
+                    ),
+                '用户添加' => array(
+                        'url' => 'admin/User/create',
+                        'show'=> '1'
+                    )
+                ),
+
+
+
+
+
             '商品管理'=>array(
                 '商品分类' => array(
                     'url' => '1.php',

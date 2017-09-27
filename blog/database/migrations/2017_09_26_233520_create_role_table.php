@@ -7,8 +7,9 @@ use Illuminate\Database\Migrations\Migration;
 class CreateRoleTable extends Migration
 {
     /**
+     * @author 李咏衡
      * Run the migrations.
-     *
+     * 角色管理
      * @return void
      */
     public function up()

@@ -134,16 +134,18 @@
 	@section('bottom-js')
 			{{-- 页脚js代码 --}}
 	@show
-
-
-	<img src="{{asset('Home\images/shabi.png')}}" title="点击可放大!" alt="点击可放大!" id="zuzhang">
+	<a href="javascript:scrollTo(0,0);"><img src="{{asset('Home/images')}}/timg.jpg" alt="" id="top" style="width:50px;position: fixed;bottom: 100px;right: 0px;"></a>
+	
+	<img src="{{asset('Home\images/shabi.png')}}" title="点击可缩放!" alt="点击可放大!" id="zuzhang">
 	<script>
 		$('#zuzhang') .on( 'click' , function () {
 			var that = $(this);
 			if (that.css('width') == '50px') {
 				that.css('width','200px');
+				$('#top').css('bottom', '250px');
 			} else {
 				that.css('width','50px');
+				$('#top').css('bottom', '100px');				
 			}
 		})
 	</script>

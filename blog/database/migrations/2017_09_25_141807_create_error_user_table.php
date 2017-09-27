@@ -7,7 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class CreateErrorUserTable extends Migration
 {
     /**
-     *  @张健领
+     * @author 张健领
      * Run the migrations.
      * 登录错误信息表error_user
      * @return void
@@ -21,10 +21,11 @@ class CreateErrorUserTable extends Migration
             $table->integer('error_time');
 
             //预留字段
-            $table->string('field1', 50);
-            $table->string('field2', 50);
-            $table->string('field3', 50);
+            $table->string('field1', 50)->nullable();
+            $table->string('field2', 50)->nullable();
+            $table->string('field3', 50)->nullable();
 
+            //laravel默认
             $table->timestamps();
         });
     }

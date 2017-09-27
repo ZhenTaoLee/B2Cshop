@@ -125,20 +125,21 @@
 			<!--规格属性-->
 			<!--名称-->
 			<div class="tb-detail-hd">
-				<h1>	
-				 良品铺子 手剥松子218g 坚果炒货 巴西松子
-	          </h1>
+				<h1>
+					{{ $DetailData->name}}
+	        			</h1>
+					
 			</div>
 			<div class="tb-detail-list">
 				<!--价格-->
 				<div class="tb-detail-price">
 					<li class="price iteminfo_price">
 						<dt>促销价</dt>
-						<dd><em>¥</em><b class="sys_item_price">56.90</b> </dd>
+						<dd><em>¥</em><b class="sys_item_price">{{$DetailData->price}}</b> </dd>
 					</li>
 					<li class="price iteminfo_mktprice">
 						<dt>原价</dt>
-						<dd><em>¥</em><b class="sys_item_mktprice">98.00</b></dd>
+						<dd><em>¥</em><b class="sys_item_mktprice">{{$DetailData->price}}</b></dd>
 					</li>
 					<div class="clear"></div>
 				</div>
@@ -223,7 +224,7 @@
 												<input id="min" class="am-btn am-btn-default" name="" type="button" value="-" />
 												<input id="text_box" name="" type="text" value="1" style="width:40px; " />
 												<input id="add" class="am-btn am-btn-default" name="" type="button" value="+" />
-												<span id="Stock" class="tb-hidden">库存<span class="stock" id="max_num">1000</span>件</span>
+												<span id="Stock" class="tb-hidden">库存<span class="stock" id="max_num">{{$DetailData->num}}</span>件</span>
 											</dd>
 
 										</div>
@@ -1167,46 +1168,37 @@
 	var max = parseInt(num);
 	$("#add").click(function() {
 		if(box.val() >= max) {
-			box.val(max - 1);
-			$('#add').attr('disabled', true);
+			box.val(max-1);
 		}
 	});
-	$("#min").click(function() {
-		if(box.val() <= 0) {
-			box.val(1);
-		}
-	});
-
-
 
 	$("#text_box").blur( function () {
 		var vas = parseInt(box.val());
 		if(box.val() > max) {
 			box.val(max);
-			$('#add').attr('disabled', true);
-			$('#min').attr('disabled', false);
-		} else if(box.val() <= 0) {
-			box.val(0);
+		} else if (box.val() <= 0) {
+			box.val(1);
 			$('#min').attr('disabled', true);
-			$('#add').attr('disabled', false);
 		} else {
 			if(isNaN(vas)) {
-				box.val(0);
+				box.val(1);
 				$('#min').attr('disabled', true);
-				$('#add').attr('disabled', false);
 			} else {
 				if (vas >= max) {
 					box.val(max);
-					$('#add').attr('disabled', true);
+				} else if ( vas == 0) {
+					box.val(1);
+					$('#min').attr('disabled', true);
 				} else {
 					box.val(vas);
+					$('#min').attr('disabled', false);
 				}
-				
-				
 			}
-
 		}
 	} );
+	
+	
 </script>
 
 @endsection
+
