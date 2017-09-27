@@ -7,6 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class CreateGoodCommentTable extends Migration
 {
     /**
+     * @author 吴国庆
      * 商品评论表
      * Run the migrations.
      *
@@ -21,9 +22,9 @@ class CreateGoodCommentTable extends Migration
             $table->string('comment', 255);
             $table->tinyInteger('date');
 
-            $table->string('field1', 50);
-            $table->string('field2', 50);
-            $table->string('field3', 50);
+            $table->string('field1', 50)->nullable();
+            $table->string('field2', 50)->nullable();
+            $table->string('field3', 50)->nullable();
 
             $table->timestamps();
         });

@@ -25,6 +25,7 @@ class CreateErrorUserTable extends Migration
             $table->string('field2', 50)->nullable();
             $table->string('field3', 50)->nullable();
 
+            //laravel默认
             $table->timestamps();
         });
     }

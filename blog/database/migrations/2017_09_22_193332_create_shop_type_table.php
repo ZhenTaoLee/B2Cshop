@@ -14,7 +14,7 @@ class CreateAddressTable extends Migration
      */
     public function up()
     {
-        Schema::create('address', function (Blueprint $table) {
+        Schema::create('shop_type', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name',  32)->unique();
             $table->integer('pid')->default(0);
@@ -36,6 +36,6 @@ class CreateAddressTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('address');
+        Schema::dropIfExists('shop_type');
     }
 }

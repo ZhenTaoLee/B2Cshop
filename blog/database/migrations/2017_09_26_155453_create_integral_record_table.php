@@ -7,6 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class CreateIntegralRecordTable extends Migration
 {
     /**
+     * @author 吴国庆
      * 积分记录表
      * Run the migrations.
      *
@@ -22,9 +23,9 @@ class CreateIntegralRecordTable extends Migration
             $table->char('change', 11);
             $table->tinyInteger('date');
 
-            $table->string('field1', 50);
-            $table->string('field2', 50);
-            $table->string('field3', 50);
+            $table->string('field1', 50)->nullable();
+            $table->string('field2', 50)->nullable();
+            $table->string('field3', 50)->nullable();
             
             $table->timestamps();
         });

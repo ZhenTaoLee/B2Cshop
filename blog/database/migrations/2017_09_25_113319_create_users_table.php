@@ -25,8 +25,8 @@ class CreateUsersTable extends Migration
             $table->string('phone', 11);
             $table->string('email', 50);
             $table->tinyInteger('state')->comment('1：启用，2：禁用 ')->nullable()->default(1);
-            $table->tinyInteger('session_id');
-            $table->tinyInteger('addtime');
+            $table->string('session_id')->nullable();
+            $table->string('addtime');
 
 
              //预留字段

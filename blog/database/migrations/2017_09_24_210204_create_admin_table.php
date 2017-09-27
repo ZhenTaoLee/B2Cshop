@@ -7,8 +7,9 @@ use Illuminate\Database\Migrations\Migration;
 class CreateAdminTable extends Migration
 {
     /**
+     * @author 李咏衡
      * Run the migrations.
-     *
+     * 管理员列表
      * @return void
      */
     public function up()
@@ -18,13 +19,11 @@ class CreateAdminTable extends Migration
             $table->string('username', 50)->comment('管理员账号');
             $table->string('pwd')->comment('密码');
             $table->text('power')->nullable()->comment('权限');
-
-            $table->Integer('role_id')->comment('(外键)角色id');
-
             $table->string('email')->comment('邮箱');
-
-            $table->tinyInteger('role_id')->nullable()->comment('(外键)角色id');
+            $table->tinyInteger('role_id')->default(0)->comment('(外键)角色id');
             $table->integer('addtime')->comment('加入时间');
+
+            //laravel默认
             $table->timestamps();
         });
     }
