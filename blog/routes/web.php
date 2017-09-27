@@ -15,13 +15,14 @@ Route::get('/', 'Home\IndexController@Index');
 //商品列表
 Route::get('/shoplist', 'Home\IndexController@List');
 //详情页
-Route::get('/detail', 'Home\IndexController@Detail');
+Route::get('/detail/{gid}', 'Home\IndexController@Detail');
 //登录页
 Route::get('/login', 'Home\IndexController@Login');
 //注册页
 Route::get('/register', 'Home\IndexController@Register');
 
-
+//注册页
+// Route::get('/shop/{shopid}', 'Home\ShopController@Register');
 
 //注销登录并返回首页
 Route::get('/logout', 'Home\IndexController@Logout');

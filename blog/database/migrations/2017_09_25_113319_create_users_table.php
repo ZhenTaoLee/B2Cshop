@@ -7,7 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class CreateUsersTable extends Migration
 {
     /**
-     * @张健领
+     * @author 张健领
      * Run the migrations.
      * 用户表user
      * @return void
@@ -30,9 +30,9 @@ class CreateUsersTable extends Migration
 
 
              //预留字段
-            $table->string('field1', 50);
-            $table->string('field2', 50);
-            $table->string('field3', 50);
+            $table->string('field1', 50)->nullable();
+            $table->string('field2', 50)->nullable();
+            $table->string('field3', 50)->nullable();
 
             $table->timestamps();
         });
