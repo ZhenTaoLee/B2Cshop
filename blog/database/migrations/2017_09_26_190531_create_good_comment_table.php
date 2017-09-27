@@ -21,9 +21,9 @@ class CreateGoodCommentTable extends Migration
             $table->string('comment', 255);
             $table->tinyInteger('date');
 
-            $table->string('field1', 50);
-            $table->string('field2', 50);
-            $table->string('field3', 50);
+            $table->string('field1', 50)->nullable();
+            $table->string('field2', 50)->nullable();
+            $table->string('field3', 50)->nullable();
 
             $table->timestamps();
         });
