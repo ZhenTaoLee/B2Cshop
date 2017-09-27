@@ -19,9 +19,9 @@ class CreateCommentImagesTable extends Migration
             $table->integer('comment_id');
             $table->string('image', 255);
 
-            $table->string('field1', 50)->nullable();
-            $table->string('field2', 50)->nullable();
-            $table->string('field3', 50)->nullable();
+            $table->string('field1', 50);
+            $table->string('field2', 50);
+            $table->string('field3', 50);
 
             $table->timestamps();
         });
