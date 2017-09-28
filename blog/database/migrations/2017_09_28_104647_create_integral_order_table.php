@@ -25,7 +25,7 @@ class CreateIntegralOrderTable extends Migration
             $table->tinyInteger('phone')->comment('收货人电话');
             $table->string('address', 50)->comment('收货地址');
             $table->tinyInteger('integral_price')->comment('总积分');
-            $table->tinyInteger('order_status')->comment('0:新订单；1:已发货；2:已收货；3:无效订单');
+            $table->tinyInteger('order_status')->default('0')->comment('0:新订单；1:已发货；2:已收货；3:无效订单');
 
             //预留字段
             $table->string('field1', 50)->nullable();
