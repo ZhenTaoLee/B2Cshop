@@ -69,15 +69,15 @@ class PersonalController extends Controller
     }
 
     //我的积分
-    public function intergral()
+    public function integral()
     { 
-    	return view('Home/Personal/intergral');
+    	return view('Home/Personal/integral');
     }
 
     //积分详情
-    public function intergralList()
+    public function integralList()
     { 
-    	return view('Home/Personal/intergralList');
+    	return view('Home/Personal/integralList');
     }
 
     //收藏

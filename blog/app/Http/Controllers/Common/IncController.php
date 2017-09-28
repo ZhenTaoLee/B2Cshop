@@ -11,7 +11,7 @@ class IncController extends Controller
     public function __construct()
     {
         return $this->adminAllPower = array(
-             '用户管理'=>array(
+            '用户管理'=>array(
                 '用户列表'=>array(
                     'url'=>'admin/User/index',
                     'show'=>'1',
@@ -80,6 +80,22 @@ class IncController extends Controller
 
                     ),
 
+            ),
+
+			
+            '积分商品管理' => array(
+                '积分商品表' => array(
+                    'url' => '1.php',
+                    'show' => '1',
+                    ),
+                '添加积分商品' => array(
+                    'url' => '2.php',
+                    'show' => '1',
+                    ),
+                '积分订单表' => array(
+                    'url' => '3.php',
+                    'show' => '1',
+                    ),
             ),
 
 
