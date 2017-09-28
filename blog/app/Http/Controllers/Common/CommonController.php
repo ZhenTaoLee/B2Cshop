@@ -22,4 +22,24 @@ class CommonController extends Controller
             'data'  => $data,
         ]);
     }
+
+    public static function hasPower($route){
+        if (session('adminUser')['id'] != 1 || session('adminUser')['power'] != 'all') {
+            $url = unserialize(session('adminUser')['power']);
+            $action = [];
+            foreach ($url as $k => $v) {
+                $action[] = explode(',', $v);
+            }
+            $name = [];
+            foreach ($action as $key => $val) {
+                foreach($val as $v) {
+                    $name[] = $v; 
+                }
+            }
+            if (!in_array($route, $name)) {
+                return false;
+            } 
+        }
+        return true;
+    }
 }

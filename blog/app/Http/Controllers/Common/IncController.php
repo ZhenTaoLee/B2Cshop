@@ -22,10 +22,6 @@ class IncController extends Controller
                     )
                 ),
 
-
-
-
-
             '商品管理'=>array(
                 '商品分类' => array(
                     'url' => '1.php',
@@ -63,7 +59,7 @@ class IncController extends Controller
                         'show' => '0'
                         ),
                 '编辑管理员' => array(
-                        'url' => "admin/Administrator/edit,admin/Administrator/doEdit",
+                        'url' => "admin/Administrator/edit,admin/Administrator/doEdit",                   
                         'show' => '0'
                         ),
                 '角色管理' => array(
@@ -71,13 +67,12 @@ class IncController extends Controller
                     'show' => '1',
                     ),
                 '添加角色' => array(
-                    'url' => 'admin/Administrator/roleCreate,admin/Administrator/addRole',
+                    'url' => 'admin/Administrator/roleCreate, admin/Administrator/addRole',
                     'show' => '0',
                     ),
                 '编辑角色' => array(
                     'url' => 'admin/Administrator/editRole,admin/Administrator/updateRole',
                     'show' => '0',
-
                     ),
 
             ),

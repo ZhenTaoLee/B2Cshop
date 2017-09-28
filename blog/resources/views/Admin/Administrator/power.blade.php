@@ -13,7 +13,9 @@
 @section('body')
 <div class='container'>
     <div>
-        <a class="btn btn-primary" href="{{url('/admin/Administrator/create')}}" target="_self">添加管理员</a>
+        @action('admin/Administrator/create')
+        <a class="btn btn-primary" href="{{url('/admin/Administrator/create')}}" >添加管理员</a>
+        @endaction
     </div>
     <table class="table table-condensed table-bordered table-striped">
         <caption>管理员列表</caption>
@@ -36,8 +38,12 @@
                 <td>{{$state[$v->state]}}</td>
                 <td>{{date("Y-m-d H:i:s",$v->addtime)}}</td>
                 <td>
+                    @action('admin/Administrator/editPower')
                     <a class="btn btn-default-sm" href="/admin/Administrator/editPower/{{$v->id}}">修改权限</a>
+                    @endaction
+                    @action('admin/Administrator/edit')
                     <a class="btn btn-default-sm" href="/admin/Administrator/edit/{{$v->id}}">编辑</a>
+                    @endaction
                 </td>
             </tr>
             @endforeach
