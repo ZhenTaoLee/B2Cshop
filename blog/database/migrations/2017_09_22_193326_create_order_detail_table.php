@@ -16,15 +16,16 @@ class CreateOrderDetailTable extends Migration
 	{
 		Schema::create('order_detail', function (Blueprint $table) {
 			$table->increments('id');
-			$table->string('orderid', 32);
-			$table->integer('uid');
-			$table->integer('gid');
-			$table->string('gname', 50);
-			$table->string('type', 60);
-			$table->integer('num');
-			$table->integer('price');
-			$table->string('address', 50);
-			$table->string('status');
+			$table->integer('oid')->comment('商品ID');
+			$table->integer('gid')->comment('订单id');
+			$table->integer('unit_price')->comment('商品单价');
+			$table->integer('product_num')->comment('商品数量');
+			$table->integer('single_intergral')->comment('单件积分');
+			$table->tinyInteger('order_state')->default(0)->comment('订单状态：0进行中，1已完成，2已取消');
+			$table->tinyInteger('pay_state')->default(0)->comment('付款状态：0待付款，1已付款，2已退款');
+			$table->string('goods_name')->comment('商品名');
+			$table->string('goods_pic')->comment('商品图');
+			$table->string('goods_specification')->comment(' 商品规格（各种商品的各种特定规格尺寸）');
 
 
 			 //预留字段

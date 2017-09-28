@@ -28,6 +28,7 @@ class AdministratorAddRequest extends FormRequest
             'pwd' => 'required|min:6',
             'pwd2' => 'required',
             'email' => 'required|email',
+          
         ];
     }
 
@@ -41,6 +42,7 @@ class AdministratorAddRequest extends FormRequest
            'pwd.required' => '密码不能为空',
            'pwd.min' => '密码长度最少6位',
            'pwd2.required' => '确认密码不能为空',
+
 
         ];
     }

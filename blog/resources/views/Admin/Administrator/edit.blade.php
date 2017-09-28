@@ -62,6 +62,21 @@
                 >禁用
             </div>
         </div>
+         <div class="form-group">
+            <label for="lastname" class="col-sm-2 control-label">角色</label>
+            <div class="col-sm-5">
+                <select name='role'  class="form-control">
+                    <option value="0">自定义</option>
+                    @foreach($roleArr as $v )
+                        <option value="{{ $v['id'] }}"
+                        @php if ($admin_user->role_id == $v['id'])
+                            echo "selected";
+                        @endphp
+                        >{{$v['role_name']}}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-5">
                 <a  class="btn btn-success btn-add" >编辑</a>
@@ -78,11 +93,12 @@
         var id = $('input[name="id"]').val();
         var email = $('input[name="email"]').val();
         var state = $('input[name="state"]:checked').val();
+        var role = $('select[name="role"]').val();
         var token  = "{{csrf_token()}}";
         $.ajax({
             url: "{{url('/admin/Administrator/doEdit')}}",
             type:'post',
-            data:{"username":username,"id":id,"email":email,"state":state,"_token":token},
+            data:{"username":username,"id":id,"email":email,"state":state,"_token":token,"role":role},
             dataType:'json',
             success:function (data) {
                 if (data.code == 2000) {

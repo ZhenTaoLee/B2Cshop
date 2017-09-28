@@ -20,10 +20,6 @@ Route::get('/detail/{gid}', 'Home\IndexController@Detail');
 Route::get('/login', 'Home\IndexController@Login');
 //注册页
 Route::get('/register', 'Home\IndexController@Register');
-//手机验证码
-Route::get('/send/{phone}/{code}','Api\Common@sendPhoneMsg');
-
-
 //注销登录并返回首页
 Route::get('/logout', 'Home\IndexController@Logout');
 
@@ -72,7 +68,8 @@ Route::post('/user/code','Api\Common@sendPhoneMsg');
 // 注册总验证
 Route::post('/doregister','Home\UserController@handerRegister');
 
-
+//手机验证码
+Route::get('/send/{phone}/{code}','Api\Common@sendPhoneMsg');
 
 //退款售后
 Route::get('/Home/refund', 'Home\PersonalController@refund');
@@ -138,9 +135,14 @@ Route::get('/admin/Administrator/edit/{id}', 'Admin\AdministratorController@edit
 Route::post('/admin/Administrator/doEdit', 'Admin\AdministratorController@doEdit');
 //加载角色管理页面
 Route::get('/admin/Administrator/role', 'Admin\AdministratorController@role');
-//添加角色页面
+//加载添加角色页面
 Route::get('/admin/Administrator/createRole', 'Admin\AdministratorController@createRole');
-
+//执行添加角色
+Route::post('/admin/Administrator/addRole', 'Admin\AdministratorController@addRole');
+//加载编辑角色页面
+Route::get('/admin/Administrator/editRole/{id}', 'Admin\AdministratorController@editRole')->where('id', '[0-9]+');
+//执行编辑角色
+Route::post('/admin/Administrator/updateRole', 'Admin\AdministratorController@updateRole');
 
 
 
