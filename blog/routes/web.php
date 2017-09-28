@@ -20,10 +20,6 @@ Route::get('/detail/{gid}', 'Home\IndexController@Detail');
 Route::get('/login', 'Home\IndexController@Login');
 //注册页
 Route::get('/register', 'Home\IndexController@Register');
-//手机验证码
-Route::get('/send/{phone}/{code}','Api\Common@sendPhoneMsg');
-
-
 //注销登录并返回首页
 Route::get('/logout', 'Home\IndexController@Logout');
 
@@ -72,7 +68,8 @@ Route::post('/user/code','Api\Common@sendPhoneMsg');
 // 注册总验证
 Route::post('/doregister','Home\UserController@handerRegister');
 
-
+//手机验证码
+Route::get('/send/{phone}/{code}','Api\Common@sendPhoneMsg');
 
 //退款售后
 Route::get('/Home/refund', 'Home\PersonalController@refund');

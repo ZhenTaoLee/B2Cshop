@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateShopTypeTable extends Migration
+class CreateAddressTable extends Migration
 {
 	/**
 	 * @author 张健领
@@ -16,6 +16,9 @@ class CreateShopTypeTable extends Migration
 	{
 		Schema::create('address', function (Blueprint $table) {
 			$table->increments('id');
+			$table->integer('uid')->comment('用户id');
+			$table->string('linkman')->comment('收件人');
+			$table->string('telephone')->comment('联系电话');
 			$table->string('province')->comment('省份');
 			$table->string('city')->comment('市/区');
 			$table->string('town')->comment('镇/街道办');
