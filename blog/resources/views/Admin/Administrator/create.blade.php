@@ -59,6 +59,17 @@
             </div>
         </div>
         <div class="form-group">
+            <label for="lastname" class="col-sm-2 control-label">角色</label>
+            <div class="col-sm-5">
+                <select name='role'  class="form-control">
+                    <option value="0">自定义</option>
+                    @foreach($roleArr as $v )
+                        <option value="{{ $v['id'] }}">{{$v['role_name']}}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
             <div class="col-sm-offset-2 col-sm-5">
                 <a  class="btn btn-success btn-add" >添加</a>
                 <button type="reset" class="btn btn-default">重置</button>
@@ -74,11 +85,13 @@
         var pwd = $('input[name="pwd"]').val();
         var pwd2 = $('input[name="pwd2"]').val();
         var email = $('input[name="email"]').val();
+        var role = $('select[name="role"]').val();
+        // console.log(role);
         var token  = "{{csrf_token()}}";
         $.ajax({
             url: "{{url('/admin/Administrator/add')}}",
             type:'post',
-            data:{"username":username,"pwd":pwd,"pwd2":pwd2,"_token":token,"email":email},
+            data:{"username":username,"pwd":pwd,"pwd2":pwd2,"_token":token,"email":email,"role":role},
             dataType:'json',
             success:function (data) {
                 if (data.code == 2000) {
@@ -97,8 +110,12 @@
             error: function (errorText) {
                 var text = JSON.parse(errorText.responseText).errors;
                 var div = "<div class='alert alert-danger alert-mess'><ul>";
-                for (var key in text) {
-                    div += "<li>"+text[key][0]+"</li>";
+                if (text) {
+                    for (var key in text) {
+                        div += "<li>"+text[key][0]+"</li>";
+                    }
+                } else {
+                       div += "<li>"+"未知错误"+"</li>";
                 }
                 div += '</ul></div>';
                 $('.alert-mess').remove();

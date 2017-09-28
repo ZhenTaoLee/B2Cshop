@@ -6,8 +6,10 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Common\IncController;
 use App\Model\Admin;
+use App\Model\Role;
 use App\Http\Requests\Admin\AdministratorAddRequest;
 use App\Http\Requests\Admin\AdministratorEditRequest;
+use App\Http\Requests\Admin\RoleCreateRequest;
 use App\Http\Controllers\Common\CommonController;
 
 class AdministratorController extends Controller
@@ -35,7 +37,9 @@ class AdministratorController extends Controller
      */
     public function create()
     {
-        return view('Admin/Administrator/create');
+        $role = Role::select('id', 'role_name')->get();
+        $roleArr = $role->toArray();
+        return view('Admin/Administrator/create', ['roleArr' => $roleArr]);
     }
 
     /**
@@ -50,7 +54,12 @@ class AdministratorController extends Controller
         $pwd = $request->input('pwd');
         $pwd2 = $request->input('pwd2');
         $email = $request->input('email');
-
+        $role = $request->input('role');
+        $power = '';
+        if ($role>0) {
+            $role_power = Role::where('id', $role)->select('power')->first();
+            $power = $role_power->power;
+        }
         $mod = Admin::select('username')->where('username', trim($username))->first();
         $uemail = Admin::select('email')->where('email', trim($email))->first();
 
@@ -63,10 +72,13 @@ class AdministratorController extends Controller
         if ($pwd != $pwd2 ) {
             return $common->json(1405, '两次密码不一致');
         }
+       
         $res = Admin::insertGetId([
                 'username' => trim($username),
                 'pwd' => password_hash($pwd, PASSWORD_DEFAULT),
                 'email' => trim($email), 
+                'role_id' => $role,
+                'power' => $power,
                 'addtime' => time(),
             ]);
         if ($res>0) {
@@ -108,25 +120,23 @@ class AdministratorController extends Controller
     public function updatePower(Request $request)
     {
         $common = new CommonController;
+        $id = $request->input('id');
+        $power = $request->input('power'); 
         $name = [];
-        foreach ($request->input('val') as $k=> $v) {
-            if ($v['name'] == 'id') {
-                $id = $v['value'];
-            } elseif($v['name'] == 'allSelect') {
-                $all = 'all';
-            } else {
- 
-                    $name[] = $v['value'];
-             
-            }         
+        if ($power == 'all') {
+            $all = 'all';
+        } else {
+            foreach ($power as $k=> $v) {
+                $name[] = $v['value'];               
+            }
         }
-
+     
         if (isset($all)) {
             $name = $all;
         } else {
             $name = serialize($name);
         }
-
+        // dd($name);
         //修改数据权限字段
         $res = Admin::where('id', $id)->update(['power' => $name]);
 
@@ -146,10 +156,12 @@ class AdministratorController extends Controller
      */
     public function edit(Request $request, $id)
     {
+        $role = Role::select('id', 'role_name')->get();
+        $roleArr = $role->toArray();
         //查询传入ID的管理员信息
-        $admin_user = Admin::select('username','id', 'state','email')->where('id', $id)->first();
+        $admin_user = Admin::select('username','id', 'state','email','role_id')->where('id', $id)->first();
         //执行加载
-        return view('Admin/Administrator/edit',['admin_user' => $admin_user]);
+        return view('Admin/Administrator/edit',['admin_user' => $admin_user, 'roleArr' => $roleArr]);
     }
 
     /**
@@ -164,6 +176,12 @@ class AdministratorController extends Controller
         $username = $request->input('username');
         $email = $request->input('email');
         $state = $request->input('state');
+        $role = $request->input('role');
+        $power = '';
+        if ($role>0) {
+            $role_power = Role::where('id', $role)->select('power')->first();
+            $power = $role_power->power;
+        }
         $user = Admin::select('username')->where([
             ['username', $username],
             ['id', '<>', $id],
@@ -182,6 +200,8 @@ class AdministratorController extends Controller
 
         $res = Admin::where('id', $id)->update([
             'username' => trim($username),
+            'power' => $power,
+            'role_id' => $role,
             'email' => trim($email),
             'state' => $state,
             ]);
@@ -192,15 +212,121 @@ class AdministratorController extends Controller
         }
     }
 
+    /**
+     * [role 加载角色页面]
+     * @return [object] [执行加载页面]
+     */
     public function role()
     {
-        return view('Admin/Administrator/role');
+        $role = Role::select('id', 'role_name', 'describe')->get();
+        $roleArr = $role->toArray();
+        return view('Admin/Administrator/role', ['roleArr' => $roleArr]);
     }
     
+    /**
+     * [CreateRole 加载添加角色页面]
+     * @return[object] [执行加载页面]
+     */
     public function CreateRole()
     {
         $inc = new IncController;
         return view('Admin/Administrator/createRole', ['allPower' => $inc->adminAllPower]);
+    }
+
+
+    public function addRole(RoleCreateRequest $request)
+    {
+        $common = new CommonController;
+        $name = [];
+        $role_name = $request->input('role_name');
+
+        $role = Role::select('role_name')->where('role_name', trim($role_name))->first();
+        if ($role) {
+             return $common->json(1404, '角色名称已经存在');
+        }
+
+        $describe = $request->input('describe');
+        $val = $request->input('power');
+        if ($val == 'all') {
+            $all = 'all';
+        } else {
+            foreach ($val  as $k => $v) {
+                $name[] = $v['value'];
+            }
+        }
+
+        if (isset($all)) {
+            $name = $all;
+        } else {
+            $name = serialize($name);
+        }
+        $res = Role::insertGetId([
+                'role_name' => $role_name,
+                'describe' => $describe,
+                'power' => $name,
+            ]);
+        if ($res) {
+            return $common->json(2000, '添加成功');
+        } else {
+            return $common->json(1401,'添加失败');
+        }
+
+    }
+
+    /**
+     * [editRole 加载修改角色页面]
+     * @param  [int] $id [角色ID]
+     * @return [object]     [执行加载页面]
+     */
+    public function editRole($id)
+    {
+        $inc = new IncController;
+        $role = Role::where('id', $id)->select('id','role_name', 'describe', 'power')->first();
+        $roleArr = $role->toArray();
+        $power = unserialize($roleArr['power']);
+        return view('Admin/Administrator/editRole', ['allPower' => $inc->adminAllPower, 'roleArr' => $roleArr ,'power' => $power]);
+    }
+
+     public function updateRole(RoleCreateRequest $request)
+    {
+        $common = new CommonController;
+        $name = [];
+        $id = $request->input('id');
+        $role_name = $request->input('role_name');
+        $describe = $request->input('describe');
+        $role = Role::select('role_name')->where([
+            ['role_name', trim($role_name)],
+            ['id', '<>', $id],
+            ])->first();
+        if ($role) {
+             return $common->json(1404, '角色名称已经存在');
+        }     
+        $val = $request->input('power');
+        if ($val == 'all') {
+            $all = 'all';
+        } else {
+            foreach ($val  as $k => $v) {
+                $name[] = $v['value'];
+            }
+        }
+        if (isset($all)) {
+            $name = $all;
+        } else {
+            $name = serialize($name);
+        }
+        $res = Role::where('id', $id)->update([
+                'role_name' => $role_name,
+                'describe' => $describe,
+                'power' => $name,
+            ]);
+
+
+        if ($res) {
+            return $common->json(2000, '修改成功');
+        } else {
+            return $common->json(1401,'修改失败');
+        }
+       
     }
 
 }

@@ -24,6 +24,14 @@
                 <th>角色描述</th>
                 <th width="30%" align="center">操作</th>
             </tr>
+            @foreach ($roleArr as $k => $v) 
+                <tr>
+                    <td>{{ $k+1 }}</td>
+                    <td>{{ $v['role_name'] }}</td>
+                    <td>{{ $v['describe'] }}</td>
+                    <td><a href="/admin/Administrator/editRole/{{$v['id']}}">修改</a></td>
+                </tr>
+            @endforeach
         </thead>
         <tbody>
        

@@ -28,7 +28,7 @@
 @section('body')
 <div class="head-div">
     <div class='head-left'>
-        <h4>添加角色</h4>
+        <h4>修改角色</h4>
         <a href="{{url('/admin/Administrator/role')}}" class='btn btn-primary btn-sm'>角色列表</a>
     </div>
 </div>
@@ -37,17 +37,17 @@
 </div>
 <div class="main-div">
     <form class="form-horizontal main-form" role="form" action="javascript:;">
+      <input type='hidden' name='rid' value="{{ $roleArr['id'] }}"/>
         <div class="form-group">
             <label for="firstname" class="col-sm-2 control-label">角色名称</label>
             <div class="col-sm-5">
-                <input type="text" class="form-control" name="role_name" placeholder="角色名称">
+                <input type="text" class="form-control" name="role_name" value="{{ $roleArr['role_name'] }}" placeholder="角色名称">
             </div>
         </div>
         <div class="form-group">
             <label for="firstname" class="col-sm-2 control-label">角色描述</label>
             <div class="col-sm-5">
-                <textarea type="text" class="form-control" name="describe" placeholder="描述">
-                </textarea>
+                <textarea type="text" class="form-control" name="describe"  placeholder="描述">{{ $roleArr['describe'] }}</textarea>
             </div>
         </div>
         <table class='table table-bordered '>
@@ -63,7 +63,11 @@
                         <div class="form-group">
                             @foreach ($v as $key=>$val)
                             <div class="col-sm-2">
-                                <input type="checkbox" class="child-box" name="power[]" value="{{$val['url']}}" >{{$key}}
+                                <input type="checkbox" class="child-box" name="power[]" value="{{$val['url']}}" 
+                                @php if(in_array($val['url'], $power))
+                                echo 'checked';
+                                @endphp
+                                >{{$key}}
                             </div>
                             @endforeach
                         </div>
@@ -78,7 +82,7 @@
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-5">
-                <a  class="btn btn-success role-add" >添加</a>
+                <a  class="btn btn-success role-edit" >修改</a>
                 <button type="reset" class="btn btn-default">重置</button>
             </div>
         </div>
@@ -87,7 +91,6 @@
 @endsection
 @section('footer-js')
 <script type="text/javascript">
-  
     $('.main-form input[name="power[]"]').on('click', function () {
        checkSelect();
     })
@@ -99,7 +102,6 @@
         }
         checkSelect();
     })
-
     $('.main-form input[name="allSelect"]').click(function () {
         if ($(this).prop('checked') == true) {
             $('.main-form input[type="checkbox"]').prop('checked', 'true');
@@ -108,23 +110,23 @@
         }
     })
 
-    $('.role-add').on('click', function () {
-        var checkbox = $('.main-form input[name="power[]"]');
-        var checked = $('.main-form input[name="power[]"]:checked');
+    $('.role-edit').on('click', function () {
+        var rid = $('input[name="rid"]').val();
         var role_name = $('input[name="role_name"]').val();
         var describe = $('textarea[name="describe"]').val();
+        var checkbox = $('.main-form input[name="power[]"]');
+        var checked = $('.main-form input[name="power[]"]:checked');
         var power = '';
         if (checkbox.length == checked.length ) {
             power = 'all';
         } else {
             power = $('.main-form input[name="power[]"]:checked').serializeArray();
         }
-        // console.log(power);
         var token  = "{{csrf_token()}}";
         $.ajax({
-            url: "{{url('/admin/Administrator/addRole')}}",
+            url: "{{url('/admin/Administrator/updateRole')}}",
             type:'post',
-            data:{"role_name":role_name,"describe":describe,"power":power, "_token":token},
+            data:{"id":rid,"role_name":role_name,"describe":describe,"power":power, "_token":token},
             dataType:'json',
             success:function (data) {
                 if (data.code == 2000) {
@@ -172,4 +174,5 @@
         }
     }
 </script>
+
 @endsection
