@@ -55,7 +55,7 @@
 				<li class="person">
 					<p><i class="am-icon-dollar"></i>我的资产</p>
 					<ul>
-						<li> <a href="{{url('/Home/intergral')}}">我的积分</a></li>
+						<li> <a href="{{url('/Home/integral')}}">我的积分</a></li>
 					</ul>
 				</li>
 

@@ -22,7 +22,7 @@
 		<div class="pointlist" style="padding: 0px 10px;">
 			<div class="pointTitle">
 				<span>积分明细</span>
-			    <span class="more"><a href="{{url('/Home/intergralList')}}">查看更多<i class="am-icon-angle-right"></i></a></span>
+			    <span class="more"><a href="{{url('/Home/integralList')}}">查看更多<i class="am-icon-angle-right"></i></a></span>
 			</div>
 			<table>
 			  <tbody>

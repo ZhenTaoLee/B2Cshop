@@ -20,10 +20,6 @@ Route::get('/detail/{gid}', 'Home\IndexController@Detail');
 Route::get('/login', 'Home\IndexController@Login');
 //注册页
 Route::get('/register', 'Home\IndexController@Register');
-//手机验证码
-Route::get('/send/{phone}/{code}','Api\Common@sendPhoneMsg');
-
-
 //注销登录并返回首页
 Route::get('/logout', 'Home\IndexController@Logout');
 
@@ -50,6 +46,26 @@ Route::get('/Home/passChange', 'Home\PersonalController@passChange');
 //订单管理
 Route::get('/Home/order', 'Home\PersonalController@order');
 
+//退款售后
+Route::get('/Home/refund', 'Home\PersonalController@refund');
+
+//商品评价
+Route::get('/Home/refund', 'Home\PersonalController@refund');
+
+//我的积分
+Route::get('/Home/integral', 'Home\PersonalController@integral');
+
+//积分详情
+Route::get('/Home/integralList', 'Home\PersonalController@integralList');
+
+//收藏
+Route::get('/Home/collection', 'Home\PersonalController@collection');
+
+//足迹
+Route::get('/Home/footprint', 'Home\PersonalController@footprint');
+
+/*****************************个人中心完成*******************************************/
+
 
 
 //Home(前台注册)有问题找区汉东
@@ -72,26 +88,10 @@ Route::post('/user/code','Api\Common@sendPhoneMsg');
 // 注册总验证
 Route::post('/doregister','Home\UserController@handerRegister');
 
+//手机验证码
+Route::get('/send/{phone}/{code}','Api\Common@sendPhoneMsg');
 
 
-//退款售后
-Route::get('/Home/refund', 'Home\PersonalController@refund');
-
-
-//商品评价
-Route::get('/Home/refund', 'Home\PersonalController@refund');
-
-//我的积分
-Route::get('/Home/intergral', 'Home\PersonalController@intergral');
-
-//积分详情
-Route::get('/Home/intergralList', 'Home\PersonalController@intergralList');
-
-//收藏
-Route::get('/Home/collection', 'Home\PersonalController@collection');
-
-//足迹
-Route::get('/Home/footprint', 'Home\PersonalController@footprint');
 
 
 
@@ -152,25 +152,23 @@ Route::post('/admin/Administrator/updateRole', 'Admin\AdministratorController@up
 /***********************************用户页面**************************/
 //加载用户页面(有问题找黄赠有)
 Route::get('/admin/User/index', 'Admin\UserController@index');
-//加载用户修改页面
 
 //这是执行添加的路由
 Route::get('/admin/User/create', 'Admin\UserController@create');
+
 //这是添加页面提价过来的路由
 Route::post('/admin/User/store', 'Admin\UserController@store');
 
 //这是处理修改的功能 点击修改便加载到Admin\UserController@show
 Route::get('/admin/User/show/{id}', 'Admin\UserController@show');
+
 //这是show这么修改页面传过来的路由
 Route::post('/admin/User/update/{id}', 'Admin\UserController@update');
+
 //查看用户详情的路由
 Route::get('/admin/User/detail/{id}', 'Admin\UserController@detail');
 
 //加载用户删除页面
 Route::get('/admin/User/delete/{id}','Admin\UserController@destroy')->where(['id'=>'\d+']);
 //*****************************用户管理模块完成*******************************************/
-
-
-
-
 
